@@ -1,0 +1,27 @@
+{
+  "name": "cm-tracksyst",
+  "productName": "cm-tracksyst",
+  "version": "0.1.0",
+  "description": "Application for Commitment Managers to have a holistic view and track the status of their on-going and passed projects within Husky Technologies.",
+  "keywords": [],
+  "author": "Pedro Guerrero",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0",
+    "pinia": "^3.0.1",
+    "better-sqlite3": "^11.8.1",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.1",
+    "vite": "^6.1.0",
+    "vite-plugin-vue-devtools": "^7.7.2"
+  },
+  "main": ".vite/build/main.cjs",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  }
+}
