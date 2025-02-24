@@ -2,7 +2,7 @@
 import { ref, onMounted } from 'vue'
 import { useProjectStore } from './store/projectStore.js';
 import { useSettingStore } from './store/settingStore.js';
-import { getAllProjects } from '../../backend/database/drivers/projectQueries.js';
+// import { getAllProjects } from '../../backend/database/drivers/projectQueries.js';
 
 import Header from './components/Header.vue'
 import Navigation from './components/Navigation.vue';
@@ -12,7 +12,7 @@ const settingStore = useSettingStore();
 
 onMounted(
   // console.log('dimelo')
-  projectStore.setAllProjects(getAllProjects.all())
+  // projectStore.setAllProjects(getAllProjects.all())
 )
 
 // onMounted(
