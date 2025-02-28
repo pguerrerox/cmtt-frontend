@@ -7,6 +7,10 @@
   "author": "Pedro Guerrero",
   "license": "MIT",
   "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
   "dependencies": {
     "pinia": "^3.0.1",
     "vue": "^3.5.13",
@@ -16,10 +20,5 @@
     "@vitejs/plugin-vue": "^5.2.1",
     "vite": "^6.1.0",
     "vite-plugin-vue-devtools": "^7.7.2"
-  },
-  "main": ".vite/build/main.cjs",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build"
   }
 }

@@ -1,44 +1,25 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import { useProjectStore } from './store/projectStore.js';
-import { useSettingStore } from './store/settingStore.js';
-// import { getAllProjects } from '../../backend/database/drivers/projectQueries.js';
-
-import Header from './components/Header.vue'
-import Navigation from './components/Navigation.vue';
+import router from '@/router/router.js'
+import { useProjectStore } from '@/store/projectStore.js'
 
 const projectStore = useProjectStore();
-const settingStore = useSettingStore();
 
 onMounted(
-  // console.log('dimelo')
-  // projectStore.setAllProjects(getAllProjects.all())
-)
-
-// onMounted(
-//   // async function to fetch all project managers.
-//   async () => {
-//     console.log('App.vue mounted - requesting All Project Managers...');
-//     settingStore.setAllManagers(await window.IPC.requestAllManagers())
-//     console.log('Request completed - requesting All Project Managers');
-//   }
-// )
-
+  () => {
+    if (!projectStore.activeManager) {
+      router.push('/welcome')
+    } else {
+      router.push('/')
+    }
+  })
 </script>
 
 <template>
-  <div>
-    <Header />
-    <Navigation />
-  </div>
-
-  <main>
-    <RouterView />
-  </main>
+  <RouterView />
 </template>
 
 <style scoped>
-/* Scoped styles for this component */
 .project-block {
   padding: 10px;
   background-color: #f0f0f0;
