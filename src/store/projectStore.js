@@ -3,11 +3,12 @@ import { defineStore } from 'pinia';
 
 export const useProjectStore = defineStore('project', () => {
     // State
+    const allProjects = ref(null)
     const projectManagers = ref(null)
     const activeManager = ref(null)
-    // const allProjects = ref(null)
 
     // Getters
+    const roAllProjects = computed(() => { return allProjects.value })
     const roProjectManagers = computed(() => {
         const arr = []
         if (!projectManagers.value) return null
@@ -18,32 +19,32 @@ export const useProjectStore = defineStore('project', () => {
         }
         return arr
     })
-    // const roProjects = computed(() => { return allProjects.value })
+
 
     // Actions
+    function setAllProjects(_projects) {
+        return allProjects.value = _projects
+    }
     function setProjectManagers(_projectManagers) {
         return projectManagers.value = _projectManagers
     }
     function setActiveManager(_activeManager) {
         return activeManager.value = _activeManager
     }
-    // function setAllProjects(_projects) {
-    //     return allProjects.value = _projects
-    // }
 
     return {
         //State
+        allProjects,
         projectManagers,
         activeManager,
-        // allProjects,
         
         //Getters
+        roAllProjects,
         roProjectManagers,
-        // roProjects,
 
         //Actions
+        setAllProjects,
         setProjectManagers,
         setActiveManager
-        // setAllProjects,
     }
 })

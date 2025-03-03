@@ -1,6 +1,7 @@
 <script setup>
 import { useSettingStore } from '../store/settingStore.js';
-import Active_Managers from '../components/Active_Managers.vue'
+// import Active_Managers from '../components/Active_Managers.vue'
+
 
 const settingStore = useSettingStore()
 

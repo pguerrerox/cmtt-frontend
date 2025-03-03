@@ -7,10 +7,7 @@ const projectStore = useProjectStore()
 const projectManagers = computed(() => projectStore.roProjectManagers)
 const selectedManager = ref(null)
 
-
 async function handleLogin() {
-    console.log(selectedManager.value);
-    
     try {
         const response = await fetch('http://localhost:5000/auth/login', {
             method: 'POST',
@@ -24,8 +21,7 @@ async function handleLogin() {
             throw new Error(error.message)
         }
         const data = await response.json()
-        console.log(`${selectedManager} loged in succesfully - ${data}`)
-       
+        
         projectStore.setActiveManager(selectedManager)
         if (selectedManager.value) {
             router.push('/')

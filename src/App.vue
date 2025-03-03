@@ -1,18 +1,36 @@
 <script setup>
-import { ref, onMounted } from 'vue'
-import router from '@/router/router.js'
+import { onMounted } from 'vue'
 import { useProjectStore } from '@/store/projectStore.js'
 
 const projectStore = useProjectStore();
 
 onMounted(
-  () => {
-    if (!projectStore.activeManager) {
-      router.push('/welcome')
-    } else {
-      router.push('/')
+  async () => {
+    try {
+      const response = await fetch('http://localhost:5000/api/projectmanagers')
+      if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`)
+      return projectStore.setProjectManagers(await response.json())
     }
-  })
+    catch (err) {
+      console.error(err)
+    }
+  }
+)
+
+onMounted(
+  async () => {
+    try {
+      const response = await fetch('http://localhost:5000/api/projects')
+      if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`)
+      return projectStore.setAllProjects(await response.json())
+    }
+    catch (err) {
+      console.error(err)
+    }
+  }
+)
+
+
 </script>
 
 <template>
