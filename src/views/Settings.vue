@@ -1,14 +1,10 @@
 <script setup>
-import { useSettingStore } from '../store/settingStore.js';
-// import Active_Managers from '../components/Active_Managers.vue'
-
-
-const settingStore = useSettingStore()
-
+import Active_Managers from '@/components/Active_Managers.vue'
 </script>
 
 <template>
-  <Active_Managers :AllManagers="settingStore.allManagers" />
+  <h1>Hello Settings</h1>
+  <Active_Managers/>
 </template>
 
 <style scoped>

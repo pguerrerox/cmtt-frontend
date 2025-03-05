@@ -20,8 +20,16 @@ export const useProjectStore = defineStore('project', () => {
         return arr
     })
 
-
     // Actions
+    async function getAllProjects(){      
+        try {
+            const response = await fetch('http://localhost:5000/api/projects')
+            return this.allProjects = await response.json()
+        }
+        catch (err){
+            console.error(err);
+        }
+    }
     function setAllProjects(_projects) {
         return allProjects.value = _projects
     }
@@ -43,6 +51,7 @@ export const useProjectStore = defineStore('project', () => {
         roProjectManagers,
 
         //Actions
+        getAllProjects,
         setAllProjects,
         setProjectManagers,
         setActiveManager

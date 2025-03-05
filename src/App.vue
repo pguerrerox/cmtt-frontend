@@ -1,36 +1,23 @@
 <script setup>
-import { onMounted } from 'vue'
+import { nextTick, onMounted,  } from 'vue'
+import router from '@/router/router.js'
 import { useProjectStore } from '@/store/projectStore.js'
+import { useSettingStore } from '@/store/settingStore.js'
 
-const projectStore = useProjectStore();
+const projectStore = useProjectStore()
+const settingStore = useSettingStore()
 
-onMounted(
-  async () => {
-    try {
-      const response = await fetch('http://localhost:5000/api/projectmanagers')
-      if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`)
-      return projectStore.setProjectManagers(await response.json())
-    }
-    catch (err) {
-      console.error(err)
-    }
+onMounted(async ()=>{
+  projectStore.getAllProjects()
+  settingStore.getAllManagers()
+  await nextTick()
+
+  if (settingStore.activeManagers.length < 1){
+    router.push('/settings')
+  }else {
+    router.push('/')
   }
-)
-
-onMounted(
-  async () => {
-    try {
-      const response = await fetch('http://localhost:5000/api/projects')
-      if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`)
-      return projectStore.setAllProjects(await response.json())
-    }
-    catch (err) {
-      console.error(err)
-    }
-  }
-)
-
-
+})
 </script>
 
 <template>

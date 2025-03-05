@@ -1,38 +1,36 @@
-import { defineStore } from 'pinia';
+import { defineStore } from 'pinia'
 
-const electronIPC = window.electron;
-
-export const useSettingStore = defineStore('settingStore', {    
+export const useSettingStore = defineStore('settings', {
     state: () => {
         return {
             allManagers: [],
-            activeCommitmentManagers: [],
+            activeManagers: []
         }
     },
-    getters: {},
+    getters: {
+        roAllManagers: (state) => state.allManagers,
+        // const roActiveManagers = 0
+    },
     actions: {
-        setAllManagers(managers) {
-            this.allManagers = managers
-        },
-        addActiveCommitmentManager(manager) {
-            if(!this.activeCommitmentManagers.includes(manager)){
-                this.activeCommitmentManagers.push(manager)
+        async getAllManagers() {
+            try {
+                const response = await fetch('http://localhost:5000/api/managers')
+                const data = await response.json()
+                return this.allManagers = data
+            }
+            catch (err) {
+                console.error(err);
             }
         },
-        removeActiveCommitmentManager(manager){
-            const index = this.activeCommitmentManagers.indexOf(manager);
-            if (index !== -1) {
-                this.activeCommitmentManagers.splice(index, 1);
+        toogleActiveManager(managerName) {
+            const target = this.allManagers.find((elem) => elem.project_manager === managerName)
+            if (target) {
+                target.isActive = target.isActive ? 0 : 1
             }
         },
-        async saveToDB(){
-            const stateString = JSON.stringify(this.$state);
-            await electronIPC.saveStoreState('save-store-state', 'settings', stateString);
-        },
-        loadFromDB(){
-            electronIPC.loadStoreState('settings')
+        setActiveManager(){
+            console.log('setting active manager');
+            return this.activeManagers = this.allManagers.filter(elem => {return elem.isActive})
         }
-
-
     }
 })

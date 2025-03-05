@@ -1,23 +1,15 @@
 <script setup>
-import { useSettingStore } from '../store/settingStore.js';
+import { ref, onMounted, computed } from 'vue';
+import { useSettingStore } from '@/store/settingStore.js';
 
-const store = useSettingStore();
+const settingStore = useSettingStore();
 
-const props = defineProps({
-    AllManagers: {
-        type: Array,
-        default: () => []
-    }
-})
+const managers = computed(() => settingStore.roAllManagers)
 
 // Handle checkbox changes
-function changeHandler(manager) {
-    if (!store.activeCommitmentManagers.includes(manager.name)) {
-        store.addActiveCommitmentManager(manager.name)
-        store.saveToDB()
-    } else {
-        store.removeActiveCommitmentManager(manager.name)
-    }
+const changeHandler = (manager)=>{
+    settingStore.toogleActiveManager(manager)
+    return settingStore.setActiveManager()
 }
 </script>
 
@@ -25,13 +17,13 @@ function changeHandler(manager) {
     <input type="checkbox" id="toggle0" class="toggle-checkbox">
     <label class="collapsible-toggle" for="toggle0">
         <p class="title" title="click to expand">Active Commitment Managers</p>
-        <!-- <p class="subtitle">Click to expand.</p> -->
+        <p class="subtitle">Click to expand.</p>
     </label>
     <div class="content">
-        <div class="items" v-for="(manager, index) in AllManagers" :key="index">
-            <input class="checkbox" type="checkbox" :id="manager.name" :value="manager.name"
-            :checked="store.activeCommitmentManagers.includes(manager.name)" @change="changeHandler(manager)" />
-            <label :for="manager.name">{{ manager.name }}</label>
+        <div class="items" v-for="(manager, index) in managers" :key="index">
+            <input class="checkbox" type="checkbox" :id="manager.project_manager" :value="manager.project_manager"
+                @change="changeHandler(manager.project_manager)" />
+            <label :for="manager.project_manager">{{ manager.project_manager }}</label>
         </div>
     </div>
 </template>
