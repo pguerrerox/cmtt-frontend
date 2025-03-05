@@ -4,7 +4,8 @@ export const useSettingStore = defineStore('settings', {
     state: () => {
         return {
             allManagers: [],
-            activeManagers: []
+            activeManagers: [],
+            logedAs: 'Guest'
         }
     },
     getters: {
@@ -28,9 +29,29 @@ export const useSettingStore = defineStore('settings', {
                 target.isActive = target.isActive ? 0 : 1
             }
         },
-        setActiveManager(){
-            console.log('setting active manager');
-            return this.activeManagers = this.allManagers.filter(elem => {return elem.isActive})
+        setActiveManager() {
+            return this.activeManagers = this.allManagers.filter(elem => { return elem.isActive })
+        },
+        setLogedAs(managerName) {
+            return this.logedAs = managerName
+        },
+        async saveToDatabase(user, store_name, store_state) {
+            const data = {
+                user,
+                store_name,
+                store_state
+            }
+            try {
+                const request = await fetch('http://localhost:5000/api/save-settings', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                })
+                return request.json()
+            }
+            catch (err) {
+                console.error(err);
+            }
         }
     }
 })

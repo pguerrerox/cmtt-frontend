@@ -7,13 +7,19 @@ const settingStore = useSettingStore();
 const managers = computed(() => settingStore.roAllManagers)
 
 // Handle checkbox changes
-const changeHandler = (manager)=>{
+const changeHandler = (manager) => {
     settingStore.toogleActiveManager(manager)
     return settingStore.setActiveManager()
+}
+const clickHandler = (logedAs, storeName, storeState) => {
+    console.log('running submit');
+    return settingStore.saveToDatabase(logedAs, storeName, storeState)
 }
 </script>
 
 <template>
+    <button type="submit" @click="clickHandler(settingStore.logedAs, 'settings', { ...settingStore.$state })">Save
+        Changes</button>
     <input type="checkbox" id="toggle0" class="toggle-checkbox">
     <label class="collapsible-toggle" for="toggle0">
         <p class="title" title="click to expand">Active Commitment Managers</p>
@@ -26,6 +32,7 @@ const changeHandler = (manager)=>{
             <label :for="manager.project_manager">{{ manager.project_manager }}</label>
         </div>
     </div>
+
 </template>
 
 <style scoped>
