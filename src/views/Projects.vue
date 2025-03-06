@@ -1,13 +1,13 @@
 <script setup>
 import { useRoute } from 'vue-router'
-import { useProjectStore } from '../store/projectStore.js';
+// import { useProjectStore } from '../store/stateStore.js';
 
 const params = useRoute().params;
-const projectStore = useProjectStore()
+// const projectStore = useProjectStore()
 
-const projectInfo = (projectStore.readOnly).find(i => {
-    return Number(i.project_number) === Number(params.pn)
-})
+// const projectInfo = (projectStore.readOnly).find(i => {
+//     return Number(i.project_number) === Number(params.pn)
+// })
 </script>
 
 <template>

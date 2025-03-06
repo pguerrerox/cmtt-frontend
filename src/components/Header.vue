@@ -1,22 +1,13 @@
 <script setup>
-import { useProjectStore } from '../store/projectStore.js';
-
-const projectStore = useProjectStore();
-
-// const updateProjects = async () => {
-//     console.log('Updating Projects: fetching projects from DB...');
-//     projectStore.setAllProjects(await window.IPC.requestForInitialData())
-// }
 </script>
-
 
 <template>
     <header>
-        <h1>commitment manager tracking system</h1>
-        <p>Beta v0.01</p>
+        <div>
+            <h1>Commitment Manager's Project Tracking Tool</h1>
+        </div>
+        <p>version: alpha 0.1</p>
         <a> LINK TO CHANGELOG - placeholder</a>
-
-        <!-- <button type="button" @click="updateProjects()">refresh projects</button> -->
     </header>
 </template>
 

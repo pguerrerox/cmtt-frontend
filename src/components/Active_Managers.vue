@@ -1,10 +1,10 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue';
-import { useSettingStore } from '@/store/settingStore.js';
+// import { useSettingStore } from '@/store/settingStore.js';
 
-const settingStore = useSettingStore();
+// const settingStore = useSettingStore();
 
-const managers = computed(() => settingStore.roAllManagers)
+// const managers = computed(() => settingStore.roAllManagers)
 
 // Handle checkbox changes
 const changeHandler = (manager) => {

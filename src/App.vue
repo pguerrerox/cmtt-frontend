@@ -1,24 +1,11 @@
 <script setup>
-import { nextTick, onMounted, } from 'vue'
-import router from '@/router/router.js'
-// import { useProjectStore } from '@/store/projectStore.js'
-import { useSettingStore } from '@/store/settingStore.js'
+import { onMounted } from 'vue'
+import { useAppStateStore } from '@/store/stateStore.js'
 
-// const projectStore = useProjectStore()
-const settingStore = useSettingStore()
+const appState = useAppStateStore()
 
 onMounted(async () => {
-  // projectStore.getAllProjects()
-  settingStore.getAllManagers()
-  await nextTick()
-
-  if (settingStore.activeManagers.length < 1) {
-    // COMPLETE LOGIC (IF EXISTING TOKEN --> FETCH AND LOGED IN AS THAT MANAGER, OTHERWISE LOGED IN AS GUEST) 
-    // settingStore.setLogedAs ()
-    router.push('/settings')
-  } else {
-    router.push('/')
-  }
+  appState.getManagers()
 })
 </script>
 
