@@ -11,12 +11,12 @@ export const useAppStateStore = defineStore('appState', {
     getters: {
         roManagers: (state) => state.managers,
         roProjects: (state) => {
-            const data = state.projects
-            return [... data]
+            const data = [...state.projects]
+            return data
         },
         roLoggedAs: (state) => {
-            const data = state.loggedAs
-            return {... data}
+            const data = { ...state.loggedAs }
+            return data
         }
     },
     actions: {
@@ -38,7 +38,7 @@ export const useAppStateStore = defineStore('appState', {
                 console.error(err);
             }
         },
-        setLoggedAs(manager){
+        setLoggedAs(manager) {
             this.loggedAs = manager
         }
 

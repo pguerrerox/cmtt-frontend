@@ -9,7 +9,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "host": "vite --host",
     "build": "vite build"
+
   },
   "dependencies": {
     "pinia": "^3.0.1",

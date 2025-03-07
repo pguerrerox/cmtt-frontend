@@ -4,12 +4,19 @@ import { useAppStateStore } from '@/store/stateStore';
 import router from '@/router/router.js'
 
 const appState = useAppStateStore()
-const managers = computed(() => appState.roManagers)
+const managers = computed(() => appState.managers)
 
-const clickHandler = (manager) => {
-    console.log(`Logged in as ${manager.name}`);
+const clickHandler = async (manager) => {
     appState.setLoggedAs(manager)
-    router.push('/guest')
+
+    if (manager.name === 'GUEST') {
+        await appState.getProjects()
+        router.push('/guest')
+
+    } else {
+        // await appState.getProjectsByManager()
+        router.push('/home')
+    }
 }
 </script>
 

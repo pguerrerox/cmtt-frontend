@@ -1,4 +1,8 @@
 <script setup>
+import router from '@/router/router';
+const logoutHandler = () => {
+    router.push('/')
+}
 </script>
 
 <template>
@@ -8,6 +12,7 @@
         </div>
         <p>version: alpha 0.1</p>
         <a> LINK TO CHANGELOG - placeholder</a>
+        <button type="button" @click="logoutHandler">Logout</button>
     </header>
 </template>
 

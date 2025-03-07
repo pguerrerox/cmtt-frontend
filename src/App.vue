@@ -5,7 +5,7 @@ import { useAppStateStore } from '@/store/stateStore.js'
 const appState = useAppStateStore()
 
 onMounted(async () => {
-  appState.getManagers()
+  await appState.getManagers()
 })
 </script>
 

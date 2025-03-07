@@ -10,7 +10,7 @@ import { RouterLink } from 'vue-router';
 </script>
 
 <template>
-    <h3>Welcome</h3>
+    <h3>HOME</h3>
     <h1>Projects Tracking for Commitment Managers</h1>
     
     <h3>Login</h3>
