@@ -1,20 +1,29 @@
 <script setup>
+import { onMounted } from 'vue';
+import { useAppStateStore } from '@/store/stateStore';
+import router from '@/router/router';
 import { useRoute } from 'vue-router'
-// import { useProjectStore } from '../store/stateStore.js';
 
+const appState = useAppStateStore()
 const params = useRoute().params;
-// const projectStore = useProjectStore()
 
-// const projectInfo = (projectStore.readOnly).find(i => {
-//     return Number(i.project_number) === Number(params.pn)
-// })
+onMounted(()=>{
+    appState.setProjectPlanned(params.pn)
+})
+// project planned information
+// project actual information
+
+
+const clickHandler = ()=> {
+    router.go(-1)
+}
+
 </script>
 
 <template>
     <div class="block">
-        <h1>KLK</h1>
-        <h2> {{ projectInfo.project_number }} </h2>
-        <p>{{ JSON.stringify(projectInfo) }}</p>
+        <button type="button" @click="clickHandler">go back</button>
+        <h1>Hello from Project No. {{params.pn}}</h1>
     </div>
 </template>
 

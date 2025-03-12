@@ -6,36 +6,36 @@ import router from '@/router/router.js'
 const appState = useAppStateStore()
 const managers = computed(() => appState.managers)
 
+/**
+ * 
+ * @param {Object} manager - the selected manager object.
+ * @var {string} manager.name - the name of the manager (UPPERCASE). 
+ */
 const clickHandler = async (manager) => {
     appState.setLoggedAs(manager)
-
-    if (manager.name === 'GUEST') {
+    if(manager.name === "GUEST"){
         await appState.getProjects()
-        router.push('/guest')
-
     } else {
-        // await appState.getProjectsByManager()
-        router.push('/home')
+        await appState.getProjectsByManager(manager.name)
     }
+    router.push('/home')
 }
 </script>
 
 <template>
     <div>
-        <h1>Commitment Manager's Project Tracking Tool</h1>
+        <h1>Projects Monitoring Tool</h1>
     </div>
 
     <div>
         <h3>Login</h3>
         <p>Select your name from the list</p>
-        <p>Select a manager:</p>
         <div class="manager-options">
             <button v-for="(manager, index) in managers" :key="index" type="button" class="manager-item"
                 @click="clickHandler(manager)">
                 {{ manager.name }}
             </button>
         </div>
-
     </div>
 </template>
 
