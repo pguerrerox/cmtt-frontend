@@ -25,10 +25,11 @@ const filteredProjects = computed(() => {
 })
 
 /**
- * 
+ * event handler function (click) to push a route with the clicked value.
  * @param {number} project_number - 6 digit number prefixed with zeros. 
  */
 const clickHandler = (project_number)=> {
+    appState.setProjectPlanned(project_number)
     router.push(`/project/${project_number}`)
 }
 </script>

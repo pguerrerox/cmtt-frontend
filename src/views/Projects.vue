@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import { useAppStateStore } from '@/store/stateStore';
 import router from '@/router/router';
 import { useRoute } from 'vue-router'
@@ -7,14 +7,11 @@ import { useRoute } from 'vue-router'
 const appState = useAppStateStore()
 const params = useRoute().params;
 
-onMounted(()=>{
-    appState.setProjectPlanned(params.pn)
-})
 // project planned information
 // project actual information
 
 
-const clickHandler = ()=> {
+const clickHandler = () => {
     router.go(-1)
 }
 
@@ -23,7 +20,12 @@ const clickHandler = ()=> {
 <template>
     <div class="block">
         <button type="button" @click="clickHandler">go back</button>
-        <h1>Hello from Project No. {{params.pn}}</h1>
+        <h1>Looking at Project No. {{ params.pn }}</h1>
+        <!-- DESCRIPTION -->
+        <!-- CUSTOMER -->
+        <!-- EXW. DATE -->
+        <!-- PROJECT MANAGER -->
+        <!-- KICKOFF - MIH - INSPECTION - PIH - MFG. - RIH - ASSY - TEST   -->
     </div>
 </template>
 

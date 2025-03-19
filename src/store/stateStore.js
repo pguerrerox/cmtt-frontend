@@ -6,18 +6,25 @@ export const useAppStateStore = defineStore('appState', {
             managers: [],
             loggedAs: {},
             projects: [],
-            projectPlanned: {},
-            projectActual: []
+            projectPlannedData: {},
+            projectActualData: []
         }
     },
     getters: {
         roManagers: (state) => state.managers,
+        
         roProjects: (state) => {
             const data = [...state.projects]
             return data
         },
+
         roLoggedAs: (state) => {
             const data = { ...state.loggedAs }
+            return data
+        },
+
+        roProjectPlannedData: (state) => {
+            const data = { ...state.projectPlannedData}
             return data
         }
     },
@@ -31,9 +38,11 @@ export const useAppStateStore = defineStore('appState', {
                 console.error(err);
             }
         },
+
         setLoggedAs(manager) {
             this.loggedAs = manager
         },
+
         async getProjects() {
             try {
                 const response = await fetch('http://localhost:5000/api/projects')
@@ -43,6 +52,11 @@ export const useAppStateStore = defineStore('appState', {
                 console.error(err);
             }
         },
+        /**
+        * async function that fetch the projects for a given manager
+        * @param {string} manager - name of manager to lookup 
+        * @returns Array of Objects with project information.
+        */
         async getProjectsByManager(manager) {
             try {
                 const response = await fetch(`http://localhost:5000/api/projects/${manager}`)
@@ -52,11 +66,12 @@ export const useAppStateStore = defineStore('appState', {
                 console.error(err);
             }
         },
+
         setProjectPlanned(_project_number) {
             const data = this.projects.filter((e) => {
                 return e.project_number === _project_number
             })
-            this.projectPlanned = { ...data }
+            this.projectPlannedData = data
         }
     }
 })

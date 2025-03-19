@@ -1,6 +1,6 @@
 {
-  "name": "cm-tracksyst",
-  "productName": "cm-tracksyst",
+  "name": "cm-tools",
+  "productName": "cm-tools",
   "version": "0.1.0",
   "description": "Application for Commitment Managers to have a holistic view and track the status of their on-going and passed projects within Husky Technologies.",
   "keywords": [],
