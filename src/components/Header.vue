@@ -8,10 +8,10 @@ const logoutHandler = () => {
 <template>
     <header>
         <div>
-            <h1>Commitment Manager's Project Tracking Tool</h1>
+            <h1>Commitment Manager Tracking Tool (CMTT)</h1>
         </div>
-        <p>version: alpha 0.1</p>
-        <a> LINK TO CHANGELOG - placeholder</a>
+        <p>Version: alpha 0.1.16</p>
+        <a> LINK TO CHANGELOG (placeholder)</a>
         <button type="button" @click="logoutHandler">Logout</button>
     </header>
 </template>
