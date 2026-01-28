@@ -35,7 +35,7 @@ export const useAppStateStore = defineStore('appState', {
                 return this.managers = await response.json()
             }
             catch (err) {
-                console.error(err);
+                console.error('[getManagers] - Error: '+ err);
             }
         },
 

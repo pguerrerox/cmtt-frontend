@@ -1,12 +1,21 @@
 <script setup>
 import { onMounted } from 'vue'
-import { useAppStateStore } from '@/store/stateStore.js'
+import { useAppStateStore } from '@/stores/stateStore.js'
+import router from '@/router/router.js'
 
 const appState = useAppStateStore()
 
 onMounted(async () => {
   await appState.getManagers()
 })
+
+let logStatus = Object.keys(appState.loggedAs)
+console.log(logStatus=false);
+
+if (!logStatus) {router.push('/admin-panel')} 
+else {router.push('/home')} 
+
+
 </script>
 
 <template>

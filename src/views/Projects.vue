@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue';
-import { useAppStateStore } from '@/store/stateStore';
+import { useAppStateStore } from '@/stores/stateStore';
 import router from '@/router/router';
 import { useRoute } from 'vue-router'
 

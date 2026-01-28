@@ -1,6 +1,6 @@
 <script setup>
 import { computed } from 'vue'
-import { useAppStateStore } from '@/store/stateStore';
+import { useAppStateStore } from '@/stores/stateStore';
 import router from '@/router/router.js'
 
 const appState = useAppStateStore()
@@ -20,6 +20,8 @@ const clickHandler = async (manager) => {
     }
     router.push('/home')
 }
+
+const asAdminLink = () => {router.push('/admin-panel')}
 </script>
 
 <template>
@@ -28,6 +30,7 @@ const clickHandler = async (manager) => {
     </div>
 
     <div>
+        <button @click="asAdminLink">Admin Panel</button>
         <h3>Login</h3>
         <p>Select your name from the list</p>
         <div class="manager-options">

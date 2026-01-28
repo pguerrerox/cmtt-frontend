@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed } from 'vue';
 import router from '@/router/router';
-import { useAppStateStore } from '@/store/stateStore';
+import { useAppStateStore } from '@/stores/stateStore';
 
 import Header from '@/components/Header.vue'
 

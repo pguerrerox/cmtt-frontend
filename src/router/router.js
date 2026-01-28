@@ -8,11 +8,13 @@ import ProjectView from '@/views/Projects.vue';
 import MoldsView from "../views/Molds.vue";
 import MachinesView from "../views/Machines.vue";
 import SettingsView from "../views/Settings.vue";
+import AdminPanel from "@/views/AdminPanel.vue";
 
 const routes = [
-    { path: '/', component: LoginView },
+    { path: '/login', component: LoginView },
     { path: '/home', component: HomeView },
     { path: '/project/:pn', component: ProjectView },
+    { path: '/admin-panel', component: AdminPanel},
     // --> HERE 
     { path: '/molds', component: MoldsView },
     { path: '/machines', component: MachinesView },
